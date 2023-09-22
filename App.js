@@ -1,20 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ScreenDemo from "./src/Const/ScreenDemo";
+import Login from "./src/Logins/Logins/Login";
+import Register from "./src/Logins/Register/Register";
+import DrawerList from "./src/Const/Drawer/Drawer";
+import Container from "./src/NavigationTabs/Container/Container";
+import BottomMap from "./src/Const/BottomTabs/BottomMap";
+// import MainSreen from "./src/MainScreen/MainSreen";
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="splash">
+        <Stack.Screen
+          name="Home"
+          component={ScreenDemo}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={Register}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MainMap"
+          component={DrawerList}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="BottomMap"
+          component={BottomMap}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
