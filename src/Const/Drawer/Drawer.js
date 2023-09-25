@@ -41,81 +41,93 @@ const DrawerList = ({ navigation }) => {
       renderNavigationView={navigationView}
     >
       <View style={{ flex: 1 }}>
-        <View style={{ backgroundColor: "#C0D1E0", width: 400, height: 670 }}>
-          <Maps />
-        </View>
         <View
-          style={{
-            backgroundColor: "black",
-            width: 400,
-            height: 100,
-          }}
+          style={{ backgroundColor: "#C0D1E0", width: "100%", height: "100%" }}
         >
-          <TouchableRipple
-            onPress={() => console.log("Pressed")}
-            rippleColor="rgba(0, 0, 0, .32)"
+          <Maps />
+          <View
+            style={{
+              backgroundColor: "black",
+              width: 400,
+              height: 100,
+            }}
           >
-            {/* <Table /> */}
-            <View style={styles.NavBar}>
-              <Pressable
-                style={styles.IconBehave}
-                android_ripple={{ borderless: true, radius: 50 }}
-              >
-                <View style={{ flexDirection: "column", alignItems: "center" }}>
-                  <IconButton
-                    icon="map-search"
-                    iconColor="black"
-                    style={{ backgroundColor: "#009B90" }}
-                    size={22}
-                  />
-                  <Text style={{ fontWeight: "900" }}>Map</Text>
-                </View>
-              </Pressable>
-              <Pressable
-                style={styles.IconBehave}
-                android_ripple={{ borderless: true, radius: 50 }}
-              >
-                <View style={{ flexDirection: "column", alignItems: "center" }}>
-                  <IconButton
-                    icon="bike"
-                    iconColor="black"
-                    style={{ backgroundColor: "#009B90" }}
-                    size={22}
-                    onPress={() => navigation.navigate("BottomMap")}
-                  />
-                  <Text style={{ fontWeight: "900" }}>Ride</Text>
-                </View>
-              </Pressable>
-              <Pressable
-                style={styles.IconBehave}
-                android_ripple={{ borderless: true, radius: 50 }}
-              >
-                <View style={{ flexDirection: "column", alignItems: "center" }}>
-                  <IconButton
-                    icon="book"
-                    iconColor="black"
-                    style={{ backgroundColor: "#009B90" }}
-                    size={22}
-                  />
-                  <Text style={{ fontWeight: "900" }}>Passes</Text>
-                </View>
-              </Pressable>
-              <Pressable
-                style={styles.IconBehave}
-                android_ripple={{ borderless: true, radius: 50 }}
-              >
-                <View style={{ flexDirection: "column", alignItems: "center" }}>
-                  <IconButton
-                    icon="security"
-                    iconColor="black"
-                    style={{ backgroundColor: "#009B90" }}
-                    size={22}
-                  />
-                  <Text style={{ fontWeight: "900" }}>Settings</Text>
-                </View>
-              </Pressable>
-            </View>
-          </TouchableRipple>
+            <TouchableRipple
+              onPress={() => console.log("Pressed")}
+              rippleColor="rgba(0, 0, 0, .32)"
+            >
+              {/* <Table /> */}
+              <View style={styles.NavBar}>
+                <Pressable
+                  style={styles.IconBehave}
+                  android_ripple={{ borderless: true, radius: 50 }}
+                >
+                  <View
+                    style={{ flexDirection: "column", alignItems: "center" }}
+                  >
+                    <IconButton
+                      icon="map-search"
+                      // iconColor="black"
+                      // style={{ backgroundColor: "#009B90" }}
+                      size={22}
+                    />
+                    <Text style={{ fontWeight: "900" }}>Map</Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  style={styles.IconBehave}
+                  android_ripple={{ borderless: true, radius: 50 }}
+                >
+                  <View
+                    style={{ flexDirection: "column", alignItems: "center" }}
+                  >
+                    <IconButton
+                      icon="bike"
+                      // iconColor="black"
+                      // style={{ backgroundColor: "#009B90" }}
+                      size={22}
+                      // onPress={() => navigation.navigate("BottomMap")}
+                      onPress={() => navigation.navigate("My Ride")}
+                    />
+                    <Text style={{ fontWeight: "900" }}>Ride</Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  style={styles.IconBehave}
+                  android_ripple={{ borderless: true, radius: 50 }}
+                >
+                  <View
+                    style={{ flexDirection: "column", alignItems: "center" }}
+                  >
+                    <IconButton
+                      icon="book"
+                      // iconColor="black"
+                      // style={{ backgroundColor: "#009B90" }}
+                      size={22}
+                    />
+                    <Text style={{ fontWeight: "900" }}>Passes</Text>
+                  </View>
+                </Pressable>
+                <Pressable
+                  style={styles.IconBehave}
+                  android_ripple={{ borderless: true, radius: 50 }}
+                >
+                  <View
+                    style={{ flexDirection: "column", alignItems: "center" }}
+                  >
+                    <IconButton
+                      icon="security"
+                      // iconColor="black"
+                      // style={{ backgroundColor: "#009B90" }}
+                      size={22}
+                      onPress={() => navigation.navigate("settings")}
+                    />
+                    <Text style={{ fontWeight: "900" }}>Settings</Text>
+                  </View>
+                </Pressable>
+              </View>
+            </TouchableRipple>
+          </View>
         </View>
       </View>
     </DrawerLayoutAndroid>

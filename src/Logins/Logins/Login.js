@@ -13,77 +13,77 @@ const Login = ({ navigation }) => {
         rippleColor="rgba(0, 0, 0, .32)"
       >
         <View style={[style.defaultView]}>
-          <Card style={[style.defaultCard]}>
-            <Text
-              style={[style.defaultText]}
-              onPress={() => navigation.navigate("MainMap")}
-            >
-              Login
-            </Text>
+          {/* <Card style={[style.defaultCard]}> */}
+          <Text
+            style={[style.defaultText]}
+            onPress={() => navigation.navigate("MainMap")}
+          >
+            Login
+          </Text>
+          <View>
+            <Text style={[style.defaultWelcomeBack]}>Welcome Back!</Text>
+          </View>
+          <View style={{ marginVertical: 20 }}>
             <View>
-              <Text style={[style.defaultWelcomeBack]}>Welcome Back!</Text>
+              <InputComponent
+                label={"Email"}
+                iconName={"email-outline"}
+                placeholder="Enter your email address"
+              />
+            </View>
+            <View>
+              <InputComponent
+                label={"Password"}
+                iconName={"lock-outline"}
+                placeholder="Enter your email address"
+                // password={"eye-outline"}
+              />
+              <Text style={[style.defaultForgot]}>Forgot Password?</Text>
             </View>
             <View style={{ marginVertical: 20 }}>
-              <View>
-                <InputComponent
-                  label={"Email"}
-                  iconName={"email-outline"}
-                  placeholder="Enter your email address"
-                />
-              </View>
-              <View>
-                <InputComponent
-                  label={"Password"}
-                  iconName={"lock-outline"}
-                  placeholder="Enter your email address"
-                  // password={"eye-outline"}
-                />
-                <Text style={[style.defaultForgot]}>Forgot Password?</Text>
-              </View>
-              <View style={{ marginVertical: 20 }}>
-                <Button
-                  style={[style.defaultBTN]}
-                  // icon=""
-                  mode="contained-tonal"
-                  onPress={() => {}}
-                >
-                  Sign In
-                </Button>
-                <Text style={[style.defaultOr]}>OR</Text>
-              </View>
-              <Divider style={{ backgroundColor: "white" }} />
-              <View style={[style.defaultFlex]}>
-                <Text style={{ fontSize: 20, color: "#C0D1E0" }}>
-                  Sign In With
-                </Text>
-                <Text>
-                  <Icon
-                    name="google"
-                    style={[style.defaultIcons]}
-                    color={"#C69F66"}
-                  />
-                  <Icon
-                    name="facebook"
-                    style={[style.defaultIcons]}
-                    color={"#3C5A7A"}
-                  />
-                </Text>
-              </View>
-
-              {/* <Divider /> */}
-              <View style={[style.defaultAccSignup]}>
-                <Text style={{ fontSize: 20, color: "#C0D1E0" }}>
-                  Don't have an account?{" "}
-                  <Text
-                    onPress={() => navigation.navigate("SignUp")}
-                    style={{ color: "#526596", fontWeight: "900" }}
-                  >
-                    Sign Up
-                  </Text>{" "}
-                </Text>
-              </View>
+              <Button
+                style={[style.defaultBTN]}
+                // icon=""
+                mode="contained-tonal"
+                onPress={() => {}}
+              >
+                Sign In
+              </Button>
+              <Text style={[style.defaultOr]}>OR</Text>
             </View>
-          </Card>
+            <Divider style={{ backgroundColor: "white" }} />
+            <View style={[style.defaultFlex]}>
+              <Text style={{ fontSize: 20, color: "#C0D1E0" }}>
+                Sign In With
+              </Text>
+              <Text>
+                <Icon
+                  name="google"
+                  style={[style.defaultIcons]}
+                  color={"#C69F66"}
+                />
+                <Icon
+                  name="facebook"
+                  style={[style.defaultIcons]}
+                  color={"#3C5A7A"}
+                />
+              </Text>
+            </View>
+
+            {/* <Divider /> */}
+            <View style={[style.defaultAccSignup]}>
+              <Text style={{ fontSize: 20, color: "#C0D1E0" }}>
+                Don't have an account?{" "}
+                <Text
+                  onPress={() => navigation.navigate("SignUp")}
+                  style={{ color: "#526596", fontWeight: "900" }}
+                >
+                  Sign Up
+                </Text>{" "}
+              </Text>
+            </View>
+          </View>
+          {/* </Card> */}
         </View>
       </TouchableRipple>
     </View>

@@ -1,86 +1,119 @@
-import React from "react";
-import MapView from "react-native-maps";
-import { StyleSheet, View, Text } from "react-native";
+import React, { useState, useEffect, useRef } from "react";
+import MapView, { Callout } from "react-native-maps";
+import { StyleSheet, View, Text, Image } from "react-native";
 import { Marker } from "react-native-maps";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { FAB, Portal, PaperProvider } from "react-native-paper";
+import { AnimatedRegion } from "react-native-maps"; // Import AnimatedRegion
+import { Platform } from "react-native";
+
+const LATITUDE = 5.653020096630557;
+const LONGITUDE = -0.18505726936365843;
+
+const bikeIcon = require("../../../assets/Image/bikepark.png");
+
+let locationOfInterest = [
+  {
+    title: "Accra",
+    location: {
+      latitude: 5.653020096630557,
+      longitude: -0.18505726936365843,
+    },
+    description: "Available",
+  },
+  {
+    title: "Kumasi",
+    location: {
+      latitude: 6.355705320375925,
+      latitudeDelta: 1.1277383777593322,
+      longitude: -1.4195265993475914,
+      longitudeDelta: 0.5650113523006439,
+    },
+    description: "Taken",
+  },
+  {
+    title: "Koforidua",
+    location: {
+      latitude: 6.078429437794352,
+
+      longitude: -0.2712566591799259,
+    },
+    description: "Available",
+  },
+];
 
 const Maps = () => {
-  const [state, setState] = React.useState({ open: false });
+  const [coordinate] = useState(
+    new AnimatedRegion({
+      latitude: LATITUDE,
+      longitude: LONGITUDE,
+    })
+  );
 
-  const onStateChange = ({ open }) => setState({ open });
+  const mapRef = useRef(null);
 
-  const { open } = state;
+  useEffect(() => {
+    const duration = 700;
+    const newCoordinate = {
+      latitude: 5.653020096630557,
+      longitude: -0.18505726936365843,
+    };
+
+    if (Platform.OS === "android") {
+      if (mapRef.current) {
+        mapRef.current.animateToRegion(
+          {
+            latitude: newCoordinate.latitude,
+            longitude: newCoordinate.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          },
+          duration
+        );
+      }
+    } else {
+      coordinate
+        .timing({
+          ...newCoordinate,
+          useNativeDriver: true,
+          duration,
+        })
+        .start();
+    }
+  }, []);
+
+  const onRegionChange = (region) => {
+    console.log(region);
+  };
+
+  const showLocationOfInterest = () => {
+    return locationOfInterest.map((item, index) => {
+      return (
+        <Marker
+          key={index}
+          coordinate={item.location}
+          title={item.title}
+          description={item.description}
+        >
+          <Image source={bikeIcon} style={{ width: 30, height: 30 }} />
+        </Marker>
+      );
+    });
+  };
 
   return (
     <View style={styles.container}>
-      <PaperProvider>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 5.653020096630557,
-            longitude: -0.18505726936365843,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
-          <Marker
-            coordinate={{
-              latitude: 5.653020096630557,
-              longitude: -0.18505726936365843,
-            }}
-          />
-          {/* =========== *** ICON ====== */}
-          <View
-            style={{
-              flexDirection: "column-reverse",
-              gap: 20,
-              marginHorizontal: 20,
-              marginVertical: 50,
-            }}
-          >
-            <View>
-              <Icon size={20} name="menu" />
-            </View>
-            <View>
-              <Icon size={20} name="magnify-minus" />
-            </View>
-          </View>
-          {/* ====================== */}
-          <Portal>
-            <FAB.Group
-              open={open}
-              visible
-              icon={open ? "calendar-today" : "plus"}
-              actions={[
-                { icon: "plus", onPress: () => console.log("Pressed add") },
-                {
-                  icon: "star",
-                  label: "Star",
-                  onPress: () => console.log("Pressed star"),
-                },
-                {
-                  icon: "email",
-                  label: "Email",
-                  onPress: () => console.log("Pressed email"),
-                },
-                {
-                  icon: "bell",
-                  label: "Remind",
-                  onPress: () => console.log("Pressed notifications"),
-                },
-              ]}
-              onStateChange={onStateChange}
-              onPress={() => {
-                if (open) {
-                  // do something if the speed dial is open
-                }
-              }}
-            />
-          </Portal>
-          {/* ===================== */}
-        </MapView>
-      </PaperProvider>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 7.732645028326621,
+          latitudeDelta: 8.985738526246607,
+          longitude: -0.95566151663661,
+          longitudeDelta: 4.520091153681278,
+        }}
+        onRegionChange={onRegionChange}
+        // ref={mapRef}
+      >
+        {showLocationOfInterest()}
+      </MapView>
     </View>
   );
 };

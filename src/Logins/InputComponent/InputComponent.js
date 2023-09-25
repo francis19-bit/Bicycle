@@ -42,7 +42,7 @@ const InputComponent = ({
           onBlur={() => {
             setIsFocuse(false);
           }}
-          style={{ color: "voilet", flex: 1 }}
+          style={{ color: "blue", flex: 1 }}
           {...props}
         />
         {password && (

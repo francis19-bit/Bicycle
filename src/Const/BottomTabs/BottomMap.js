@@ -1,11 +1,9 @@
 import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import BottomSheet from "react-native-simple-bottom-sheet";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Maps from "../Mapping/Maps";
-import { IconButton } from "react-native-paper";
+import { Button, IconButton } from "react-native-paper";
 import { ProgressBar } from "react-native-paper";
-import ButtonComponent from "../../Logins/ButtonComponent/Button";
 
 const BottomMap = () => {
   return (
@@ -56,7 +54,14 @@ const BottomMap = () => {
               </View>
             </View>
             {/* ====================== */}
-            <View style={{ flexDirection: "row", gap: 100, height: 200 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                gap: 150,
+                height: 200,
+                // justifyContent: "space-between",
+              }}
+            >
               <View style={{ flexDirection: "column", gap: 10 }}>
                 <IconButton
                   icon="bicycle"
@@ -85,16 +90,18 @@ const BottomMap = () => {
                 </Text>
                 <ProgressBar progress={0.7} color="red" />
               </View>
-              <View>
-                <ButtonComponent
-                  imoji={"lock-outline"}
-                  title={"unlock a bike"}
-                />
-              </View>
             </View>
             {/* ========================= */}
-            <View style={{ height: 60, alignSelf: "flex-start" }}>
-              <ButtonComponent imoji={"lock-outline"} title={"unlock a bike"} />
+            <View style={{ height: 60, alignSelf: "center" }}>
+              <Button
+                icon="lock-outline"
+                mode="elevated"
+                onPress={() => console.log("Pressed")}
+                style={{ width: "100%" }}
+              >
+                {" "}
+                Unlock
+              </Button>
             </View>
           </ScrollView>
         )}
